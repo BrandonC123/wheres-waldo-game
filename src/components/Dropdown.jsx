@@ -1,16 +1,17 @@
-const Dropdown = ({ display }) => {
+const Dropdown = ({ display, checkMatch }) => {
     return (
         display && (
             <div className="dropdown">
-                <div className="dropdown-item">
-                    <p>Character 1</p>
+                <div
+                    onClick={() => {
+                        checkMatch("Waldo");
+                    }}
+                    className="dropdown-item"
+                >
+                    Character 1
                 </div>
-                <div className="dropdown-item">
-                    <p>Character 2</p>
-                </div>
-                <div className="dropdown-item">
-                    <p>Character 3</p>
-                </div>
+                <div className="dropdown-item">Character 2</div>
+                <div className="dropdown-item">Character 3</div>
             </div>
         )
     );

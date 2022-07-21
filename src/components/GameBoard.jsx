@@ -13,6 +13,7 @@ const GameBoard = ({ index, imgSrc }) => {
     const [cursorPosition, setCursorPosition] = useState([0, 0]);
     // Cursor position relative to gameboard-img when user clicks
     const [userClick, setUserClick] = useState([0, 0]);
+    const [userSelection, setUserSelection] = useState("");
 
     async function fillTestArray() {
         const querySnapshot = await getDocs(collection(db, "image-position-1"));
@@ -36,16 +37,42 @@ const GameBoard = ({ index, imgSrc }) => {
             ).style.top = `${cursorPosition[1]}px`;
         }
     }, [display, cursorPosition]);
+    function checkMatch(userSelection) {
+        let match = false;
+        const testObject = {
+            x: userClick[0],
+            y: userClick[1],
+            choice: userSelection,
+        };
+        console.log(testObject);
+        testArray.forEach((object) => {
+            console.log(object);
+            if (testObject.x >= object.x1 && testObject.x <= object.x2) {
+                console.log("layer 1");
+                if (testObject.y >= object.y1 && testObject.y <= object.y2) {
+                    console.log("layer 2");
+                    if (testObject.choice === object.name) {
+                        console.log("layer 3");
+                        match = true;
+                        console.log("correct!");
+                    }
+                }
+            }
+        });
+        // Close dropdown after choosing a character
+        setDisplay(!display);
+    }
 
     return (
         <div className="container">
-            <Dropdown display={display} />
+            <Dropdown display={display} checkMatch={checkMatch} />
             <img
                 onClick={(event) => {
                     toggleDropdown(event.clientX, event.clientY);
                     const boxCoord = event.target.getBoundingClientRect();
                     const x = Math.round(event.clientX - boxCoord.left);
                     const y = Math.round(event.clientY - boxCoord.top);
+                    // console.log(x, y);
                     setUserClick([x, y]);
                 }}
                 className="gameboard-img"
