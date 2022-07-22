@@ -9,10 +9,59 @@ img {
     max-width: 100%;
 }
 
+.row {
+    display: flex;
+}
+
+.footer {
+    margin-top: 3em;
+}
+
 .container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: lightblue;
+    margin-bottom: 1.5em;
+    z-index: 1;
+}
+
+.header-container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gameboard-option a {
+    text-decoration: none;
+    color: black;
+}
+
+.gameboard-option a:hover {
+    opacity: 0.75;
 }
 
 .gameboard-img {
     display: block;
     margin: 0 auto;
+    width: 70%;
+}
+
+.dropdown {
+    background-color: white;
+    position: absolute;
+    font-size: 0.75rem;
+    width: 10%;
+}
+
+.dropdown-item {
+    margin: 0;
+    padding: 0.5em;
+}
+
+.dropdown-item:hover {
+    background-color: lightgray;
 }
