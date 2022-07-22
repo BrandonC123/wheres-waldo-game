@@ -4,6 +4,10 @@ import db from "..";
 import Dropdown from "./Dropdown";
 
 const GameBoard = ({ index, imgSrc }) => {
+    const nameArrays = [
+        ["Waldo1", "test", "test"],
+        ["Waldo2", "test", "test"],
+    ];
     const [testArray, setTestArray] = useState([]);
     useEffect(() => {
         fillTestArray();
@@ -13,7 +17,6 @@ const GameBoard = ({ index, imgSrc }) => {
     const [cursorPosition, setCursorPosition] = useState([0, 0]);
     // Cursor position relative to gameboard-img when user clicks
     const [userClick, setUserClick] = useState([0, 0]);
-    const [userSelection, setUserSelection] = useState("");
 
     async function fillTestArray() {
         const querySnapshot = await getDocs(collection(db, "image-position-1"));
@@ -65,14 +68,17 @@ const GameBoard = ({ index, imgSrc }) => {
 
     return (
         <div className="container">
-            <Dropdown display={display} checkMatch={checkMatch} />
+            <Dropdown
+                display={display}
+                checkMatch={checkMatch}
+                nameArray={nameArrays[index - 1]}
+            />
             <img
                 onClick={(event) => {
-                    toggleDropdown(event.clientX, event.clientY);
+                    toggleDropdown(event.pageX, event.pageY);
                     const boxCoord = event.target.getBoundingClientRect();
                     const x = Math.round(event.clientX - boxCoord.left);
                     const y = Math.round(event.clientY - boxCoord.top);
-                    // console.log(x, y);
                     setUserClick([x, y]);
                 }}
                 className="gameboard-img"

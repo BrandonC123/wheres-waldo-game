@@ -1,20 +1,21 @@
-const Dropdown = ({ display, checkMatch }) => {
-    return (
-        display && (
-            <div className="dropdown">
+const Dropdown = ({ display, checkMatch, nameArray }) => {
+    console.log(nameArray);
+    function fillDropdown() {
+        return nameArray.map((name) => {
+            return (
                 <div
-                    onClick={() => {
-                        checkMatch("Waldo");
+                    onClick={(e) => {
+                        checkMatch(e.target.textContent);
+                        console.log(e.target.textContent);
                     }}
                     className="dropdown-item"
                 >
-                    Character 1
+                    {name}
                 </div>
-                <div className="dropdown-item">Character 2</div>
-                <div className="dropdown-item">Character 3</div>
-            </div>
-        )
-    );
+            );
+        });
+    }
+    return display && <div className="dropdown">{fillDropdown()}</div>;
 };
 
 export default Dropdown;
