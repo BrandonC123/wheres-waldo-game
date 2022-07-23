@@ -44,6 +44,43 @@ img {
     opacity: 0.75;
 }
 
+.timer-container {
+    position: fixed;
+    top: 50%;
+    margin-left: 2em;
+}
+
+.side-content-container {
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    position: fixed;
+    top: 45%;
+    height: 15%;
+}
+
+.character-menu-container {
+    position: fixed;
+    top: 30%;
+    left: 83%;
+    background-color: rgb(240, 235, 235);
+    padding: 0.5em 1em;
+    box-shadow: 0 2px 5px gray;
+}
+
+.character-menu-item + .character-menu-item {
+    margin-top: 10px;
+}
+
+.character-menu-item > img {
+    height: clamp(50px, 10vh, 150px);
+    box-shadow: 0 2px 5px gray;
+}
+
+.character-menu-item > p {
+    margin: auto 0 auto 10px;
+}
+
 .gameboard-img {
     display: block;
     margin: 0 auto;
