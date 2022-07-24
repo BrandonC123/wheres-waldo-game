@@ -11,7 +11,9 @@ const GameBoard = ({ index, imgSrc }) => {
     const [testArray, setTestArray] = useState([]);
     useEffect(() => {
         fillTestArray();
-    }, []);
+        // Clear display data when index changes which means gameboard is switched
+        clearData();
+    }, [index]);
     const [display, setDisplay] = useState(false);
     // Used for displaying dropdown
     const [cursorPosition, setCursorPosition] = useState([0, 0]);
@@ -20,7 +22,9 @@ const GameBoard = ({ index, imgSrc }) => {
 
     async function fillTestArray() {
         let tempArray = [];
-        const querySnapshot = await getDocs(collection(db, "image-position-1"));
+        const querySnapshot = await getDocs(
+            collection(db, `image-position-${index}`)
+        );
         querySnapshot.forEach((doc) => {
             tempArray.push(doc.data());
         });
@@ -41,6 +45,7 @@ const GameBoard = ({ index, imgSrc }) => {
             ).style.top = `${cursorPosition[1]}px`;
         }
     }, [display, cursorPosition]);
+    const [matches, setMatches] = useState(0);
     function checkMatch(userSelection) {
         const testObject = {
             x: userClick[0],
@@ -57,13 +62,22 @@ const GameBoard = ({ index, imgSrc }) => {
                         console.log("layer 3");
                         console.log("correct!");
                         setDisplay(!display);
-                        return;
+                        setMatches(matches + 1);
+                        return true;
                     }
                 }
             }
         }
         // Close dropdown after choosing a character
         setDisplay(!display);
+        return false;
+    }
+    function clearData() {
+        const menuItems = document.querySelectorAll(".character-menu-item");
+        menuItems.forEach((item) => {
+            item.style.opacity = "1";
+        });
+        setMatches(0);
     }
 
     return (
