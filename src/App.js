@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Timer from "./components/Timer";
 import CharacterMenu from "./components/CharacterMenu";
+import Game from "./components/Game";
 
 function App() {
     document.title = "Where's Waldo";
@@ -29,9 +30,10 @@ function App() {
                 setImgSrc={setImgSrc}
                 setGameBoardIndex={setGameBoardIndex}
             />
-            <Timer />
+            {/* <Timer />
+            <GameBoard index={gameboardIndex} imgSrc={imgSrc} /> */}
+            <Game index={gameboardIndex} imgSrc={imgSrc} />
             <CharacterMenu imgArray={menuImgSrcArray[gameboardIndex - 1]} />
-            <GameBoard index={gameboardIndex} imgSrc={imgSrc} />
             <Footer />
         </div>
     );
