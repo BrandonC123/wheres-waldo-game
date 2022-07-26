@@ -7,9 +7,9 @@ const Game = ({ index, imgSrc }) => {
     const [time, setTime] = useState("00:00:00");
     const [start, setStart] = useState(false);
     const [matches, setMatches] = useState(0);
-    function startGame() {
-        setStart(true);
-        document.querySelector(".gameboard-img").classList.remove("inactive");
+    function toggleGame(status) {
+        setStart(status);
+        document.querySelector(".gameboard-img").classList.toggle("inactive");
     }
     function incrementMatches() {
         setMatches(matches + 1);
@@ -17,34 +17,39 @@ const Game = ({ index, imgSrc }) => {
     useEffect(() => {
         if (matches === 3) {
             setStart(false);
-            const menuItems = document.querySelectorAll(".character-menu-item");
-            menuItems.forEach((item) => {
-                item.style.opacity = "1";
-            });
-            setMatches(0);
             setShowPopup(true);
+            document.querySelector(".gameboard-img").classList.add("inactive");
         }
     }, [matches]);
     const [showPopup, setShowPopup] = useState(false);
-    function displaySubmitPopup() {
-        setShowPopup(!showPopup);
+    function resetGame() {
+        setShowPopup(false);
+        setTime("00:00:00");
+        setMatches(0);
+        const menuItems = document.querySelectorAll(".character-menu-item");
+        menuItems.forEach((item) => {
+            item.style.removeProperty("opacity");
+        });
     }
     return (
         <>
-            <SubmitTimePopup time={time} display={showPopup} />
+            <SubmitTimePopup
+                index={index}
+                time={time}
+                display={showPopup}
+                resetGame={resetGame}
+            />
             <Timer
                 time={time}
                 setTime={setTime}
                 start={start}
-                startGame={startGame}
+                toggleGame={toggleGame}
             />
             <GameBoard
                 index={index}
                 imgSrc={imgSrc}
                 time={time}
-                startGame={startGame}
                 incrementMatches={incrementMatches}
-                displaySubmitPopup={displaySubmitPopup}
             />
         </>
     );

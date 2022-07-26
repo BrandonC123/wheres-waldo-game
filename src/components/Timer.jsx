@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 
-const Timer = ({ time, setTime, start, startGame }) => {
+const Timer = ({ time, setTime, start, toggleGame }) => {
     const [ms, setMs] = useState(0);
     const [sec, setSec] = useState(0);
     const [min, setMin] = useState(0);
-    // const [time, setTime] = useState("00:00:00");
-    // const [start, setStart] = useState(false);
     useEffect(() => {
         if (start) {
             var timer = setInterval(() => {
                 setMs(ms + 1);
                 convertTime();
             }, 10);
+        } else {
+            setMs(0);
+            setSec(0);
+            setMin(0);
         }
         return () => {
             clearInterval(timer);
@@ -36,21 +38,24 @@ const Timer = ({ time, setTime, start, startGame }) => {
     return (
         <div className="timer-container">
             Timer: {time}
-            <div></div>
-            <button
-                onClick={() => {
-                    startGame();
-                }}
-            >
-                Start
-            </button>
-            {/* <button
-                onClick={() => {
-                    setStart(false);
-                }}
-            >
-                Stop
-            </button> */}
+            <div className="timer-actions">
+                <button
+                    onClick={() => {
+                        toggleGame(true);
+                    }}
+                    className="action-btn btn"
+                >
+                    Start
+                </button>
+                <button
+                    onClick={() => {
+                        toggleGame(false);
+                    }}
+                    className="secondary-btn btn"
+                >
+                    Reset
+                </button>
+            </div>
         </div>
     );
 };

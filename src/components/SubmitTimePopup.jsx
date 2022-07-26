@@ -3,7 +3,7 @@ import { doc, setDoc } from "firebase/firestore";
 import db from "..";
 import uniqid from "uniqid";
 
-const SubmitTimePopup = ({ time, display }) => {
+const SubmitTimePopup = ({ time, display, resetGame, index }) => {
     const [playerName, setPlayerName] = useState("");
     return (
         display && (
@@ -13,12 +13,16 @@ const SubmitTimePopup = ({ time, display }) => {
                     onSubmit={async function (e) {
                         e.preventDefault();
                         const submitObject = { name: playerName, time: time };
-                        console.log(submitObject);
+                        // Submit to firestore
                         await setDoc(
-                            doc(db, "leaderboard", `${time}-${uniqid()}`),
+                            doc(
+                                db,
+                                `leaderboard-${index}`,
+                                `${time}-${uniqid()}`
+                            ),
                             submitObject
                         );
-                        // Submit to firestore
+                        resetGame();
                     }}
                     className="submit-time form"
                 >
@@ -34,7 +38,14 @@ const SubmitTimePopup = ({ time, display }) => {
                         />
                     </div>
                     <button>Submit</button>
-                    <button>Skip</button>
+                    <button
+                        onClick={() => {
+                            resetGame();
+                        }}
+                        type="button"
+                    >
+                        Skip
+                    </button>
                 </form>
             </div>
         )
