@@ -81,6 +81,11 @@ img {
     margin: auto 0 auto 10px;
 }
 
+.inactive {
+    opacity: 0.05;
+    pointer-events: none;
+}
+
 .gameboard-img {
     display: block;
     margin: 0 auto;
@@ -127,9 +132,9 @@ img {
 
 .btn {
     border: none;
-    padding: .5em 1em;
+    padding: 0.5em 1em;
 }
 
 .btn:hover {
-    opacity: .75;
+    opacity: 0.75;
 }

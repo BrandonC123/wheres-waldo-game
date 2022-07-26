@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import db from "..";
 import Dropdown from "./Dropdown";
 
-const GameBoard = ({ index, imgSrc }) => {
+const GameBoard = ({ index, imgSrc, incrementMatches }) => {
     const nameArrays = [
         ["Waldo", "Buff Guy", "Wizard"],
         ["Waldo", "Backpacker", "Rag Guy"],
@@ -62,7 +62,7 @@ const GameBoard = ({ index, imgSrc }) => {
                         console.log("layer 3");
                         console.log("correct!");
                         setDisplay(!display);
-                        setMatches(matches + 1);
+                        incrementMatches()
                         return true;
                     }
                 }
@@ -73,11 +73,10 @@ const GameBoard = ({ index, imgSrc }) => {
         return false;
     }
     function clearData() {
-        const menuItems = document.querySelectorAll(".character-menu-item");
-        menuItems.forEach((item) => {
-            item.style.opacity = "1";
-        });
-        setMatches(0);
+        // const menuItems = document.querySelectorAll(".character-menu-item");
+        // menuItems.forEach((item) => {
+        //     item.style.opacity = "1";
+        // });
     }
 
     return (
@@ -98,7 +97,7 @@ const GameBoard = ({ index, imgSrc }) => {
                     console.log(x, y);
                     setUserClick([x, y]);
                 }}
-                className="gameboard-img"
+                className="gameboard-img inactive"
                 src={imgSrc}
                 alt=""
             />
