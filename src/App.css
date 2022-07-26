@@ -35,12 +35,12 @@ img {
     align-items: center;
 }
 
-.gameboard-option a {
+.gameboard-link {
     text-decoration: none;
     color: black;
 }
 
-.gameboard-option a:hover {
+.gameboard-link:hover {
     opacity: 0.75;
 }
 
@@ -101,4 +101,35 @@ img {
 
 .dropdown-item:hover {
     background-color: lightgray;
+}
+
+.popup {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 30%;
+    background-color: white;
+    box-shadow: 0 0 10px black;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.leaderboard-table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.leaderboard-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.btn {
+    border: none;
+    padding: .5em 1em;
+}
+
+.btn:hover {
+    opacity: .75;
 }
