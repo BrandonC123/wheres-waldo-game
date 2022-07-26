@@ -13,6 +13,11 @@ img {
     display: flex;
 }
 
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
 .footer {
     margin-top: 3em;
 }
@@ -26,13 +31,19 @@ img {
     position: sticky;
     top: 0;
     background-color: lightblue;
-    margin-bottom: 1.5em;
     z-index: 1;
 }
 
 .header-container {
     justify-content: space-between;
     align-items: center;
+}
+
+.gameboard-link-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .gameboard-link {
@@ -44,24 +55,23 @@ img {
     opacity: 0.75;
 }
 
+.gameboard-link + .gameboard-link {
+    margin-left: 10px;
+}
+
 .timer-container {
     position: fixed;
     top: 50%;
-    margin-left: 2em;
-}
-
-.side-content-container {
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
-    position: fixed;
-    top: 45%;
-    height: 15%;
+    transform: translateY(-50%);
+    left: 2%;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 1em;
 }
 
 .character-menu-container {
     position: fixed;
-    top: 30%;
+    top: 50%;
+    transform: translateY(-50%);
     left: 83%;
     background-color: rgb(240, 235, 235);
     padding: 0.5em 1em;
@@ -88,7 +98,7 @@ img {
 
 .gameboard-img {
     display: block;
-    margin: 0 auto;
+    margin: 2em auto 3em auto;
     width: 70%;
 }
 
@@ -113,11 +123,27 @@ img {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
-    width: 30%;
+    width: 35%;
     background-color: white;
     box-shadow: 0 0 10px black;
     padding: 2em;
     border-radius: 1em;
+}
+
+.submit-time-popup {
+    text-align: center;
+}
+
+.input {
+    align-items: center;
+}
+
+.input > input {
+    max-width: 250px;
+}
+
+.submit-time-form-actions {
+    margin-top: 1em;
 }
 
 .leaderboard-table {
@@ -126,8 +152,24 @@ img {
     text-align: center;
 }
 
+.leaderboard-container {
+    align-items: flex-end;
+}
+
 .leaderboard-table tr {
     border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table > tbody tr:nth-child(1) {
+    background-color: rgb(231, 202, 36);
+}
+
+.leaderboard-table > tbody tr:nth-child(2) {
+    background-color: rgb(170, 169, 173);
+}
+
+.leaderboard-table > tbody tr:nth-child(3) {
+    background-color: rgb(205, 127, 50);
 }
 
 .btn {
@@ -137,4 +179,24 @@ img {
 
 .btn:hover {
     opacity: 0.75;
+}
+
+.close-btn {
+    color: rgb(231, 66, 66);
+    font-weight: bold;
+}
+
+.action-btn {
+    background-color: rgb(231, 66, 66);
+    color: white;
+    border-radius: 100px;
+    font-weight: bold;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: rgb(231, 66, 66);
+    font-weight: bold;
+    border-radius: 100px;
+    border: 2px solid rgb(231, 66, 66);
 }

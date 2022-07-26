@@ -1,9 +1,6 @@
 import "./App.css";
-import GameBoard from "./components/GameBoard";
-import Footer from "./components/Footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
-import Timer from "./components/Timer";
 import CharacterMenu from "./components/CharacterMenu";
 import Game from "./components/Game";
 import LeaderboardPopup from "./components/LeaderboardPopup";
@@ -43,7 +40,6 @@ function App() {
             />
             <Game index={gameboardIndex} imgSrc={imgSrc} />
             <CharacterMenu imgArray={menuImgSrcArray[gameboardIndex - 1]} />
-            <Footer />
         </div>
     );
 }
