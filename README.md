@@ -1,3 +1,9 @@
+Game based on "Where's Waldo" game.  
+Photo tagging app which allows users to search for 3 different characters for each gameboard image.  
+A choice is made by clicking on the position and choosing the correct character name.  
+Character positions are stored in Firestore Database and users can optionally submit their score database to display on leaderboard if applicable.  
+Built with React and hosting/database with Firebase. [Link here](https://where-s-waldo-eb5d1.web.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
