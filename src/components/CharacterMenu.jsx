@@ -2,7 +2,7 @@ const CharacterMenu = ({ imgArray }) => {
     function fillMenu() {
         return imgArray.map((item) => {
             return (
-                <div className="character-menu-item row">
+                <div key={item.name} className="character-menu-item row">
                     <img src={item.imgSrc} alt={item.name} />
                     <p>{item.name}</p>
                 </div>

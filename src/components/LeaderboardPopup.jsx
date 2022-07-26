@@ -1,4 +1,5 @@
 import { collection, getDocs, limit, query } from "firebase/firestore";
+import uniqid from "uniqid";
 import db from "..";
 import { useEffect, useState } from "react";
 
@@ -15,14 +16,13 @@ const LeaderboardPopup = ({ index, display, toggleLeaderboard }) => {
         querySnapshot.forEach((doc) => {
             tempArray.push(doc.data());
         });
-        // console.log(tempArray);
         setLeaderboard(tempArray);
     }
     function displayTable() {
         getEntries();
         return leaderboard.map((entry, index) => {
             return (
-                <tr>
+                <tr key={`${entry.name}-${uniqid()}`}>
                     <td>{index + 1}</td>
                     <td>{entry.name}</td>
                     <td>{entry.time}</td>
@@ -33,24 +33,27 @@ const LeaderboardPopup = ({ index, display, toggleLeaderboard }) => {
     return (
         display && (
             <div className="popup">
-                <a
-                    onClick={() => {
-                        toggleLeaderboard();
-                    }}
-                    href="#"
-                >
-                    Close
-                </a>
-                <table className="leaderboard-table">
-                    <thead>
-                        <tr>
-                            <th>Place</th>
-                            <th>Name</th>
-                            <th>Time (min:sec:ms)</th>
-                        </tr>
-                    </thead>
-                    <tbody>{displayTable()}</tbody>
-                </table>
+                <div className="leaderboard-container column">
+                    <a
+                        onClick={() => {
+                            toggleLeaderboard();
+                        }}
+                        href="#"
+                        className="close-btn"
+                    >
+                        Close
+                    </a>
+                    <table className="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Place</th>
+                                <th>Name</th>
+                                <th>Time (min:sec:ms)</th>
+                            </tr>
+                        </thead>
+                        <tbody>{displayTable()}</tbody>
+                    </table>
+                </div>
             </div>
         )
     );

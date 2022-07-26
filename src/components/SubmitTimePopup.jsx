@@ -7,7 +7,7 @@ const SubmitTimePopup = ({ time, display, resetGame, index }) => {
     const [playerName, setPlayerName] = useState("");
     return (
         display && (
-            <div className="popup">
+            <div className="submit-time-popup popup">
                 <h2>Your time was: {time}</h2>
                 <form
                     onSubmit={async function (e) {
@@ -24,10 +24,10 @@ const SubmitTimePopup = ({ time, display, resetGame, index }) => {
                         );
                         resetGame();
                     }}
-                    className="submit-time form"
+                    className="submit-time-form"
                 >
-                    <div className="input">
-                        <label htmlFor="submit-name">Enter Name Here</label>
+                    <div className="input column">
+                        <label htmlFor="submit-name">Enter Name Here:</label>
                         <input
                             onChange={(e) => {
                                 setPlayerName(e.target.value);
@@ -37,15 +37,18 @@ const SubmitTimePopup = ({ time, display, resetGame, index }) => {
                             id="submit-name"
                         />
                     </div>
-                    <button>Submit</button>
-                    <button
-                        onClick={() => {
-                            resetGame();
-                        }}
-                        type="button"
-                    >
-                        Skip
-                    </button>
+                    <div className="submit-time-form-actions">
+                        <button className="action-btn btn">Submit</button>
+                        <button
+                            onClick={() => {
+                                resetGame();
+                            }}
+                            type="button"
+                            className="secondary-btn btn"
+                        >
+                            Skip
+                        </button>
+                    </div>
                 </form>
             </div>
         )

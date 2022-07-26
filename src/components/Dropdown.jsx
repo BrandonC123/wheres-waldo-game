@@ -13,6 +13,7 @@ const Dropdown = ({ display, checkMatch, nameArray }) => {
                         }
                     }}
                     className="dropdown-item"
+                    key={name}
                 >
                     {name}
                 </div>

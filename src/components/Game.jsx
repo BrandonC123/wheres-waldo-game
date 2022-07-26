@@ -9,7 +9,13 @@ const Game = ({ index, imgSrc }) => {
     const [matches, setMatches] = useState(0);
     function toggleGame(status) {
         setStart(status);
-        document.querySelector(".gameboard-img").classList.toggle("inactive");
+        if (status) {
+            document
+                .querySelector(".gameboard-img")
+                .classList.remove("inactive");
+        } else {
+            document.querySelector(".gameboard-img").classList.add("inactive");
+        }
     }
     function incrementMatches() {
         setMatches(matches + 1);
