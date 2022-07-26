@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Timer from "./components/Timer";
 import CharacterMenu from "./components/CharacterMenu";
 import Game from "./components/Game";
+import LeaderboardPopup from "./components/LeaderboardPopup";
 
 function App() {
     document.title = "Where's Waldo";
@@ -23,15 +24,23 @@ function App() {
         ],
     ];
     const [gameboardIndex, setGameBoardIndex] = useState(1);
+    const [showLeaderboard, setShowLeaderboard] = useState(false);
+    function toggleLeaderboard() {
+        setShowLeaderboard(!showLeaderboard);
+    }
 
     return (
         <div className="overall-container">
             <Header
                 setImgSrc={setImgSrc}
                 setGameBoardIndex={setGameBoardIndex}
+                toggleLeaderboard={toggleLeaderboard}
             />
-            {/* <Timer />
-            <GameBoard index={gameboardIndex} imgSrc={imgSrc} /> */}
+            <LeaderboardPopup
+                index={gameboardIndex}
+                display={showLeaderboard}
+                toggleLeaderboard={toggleLeaderboard}
+            />
             <Game index={gameboardIndex} imgSrc={imgSrc} />
             <CharacterMenu imgArray={menuImgSrcArray[gameboardIndex - 1]} />
             <Footer />
