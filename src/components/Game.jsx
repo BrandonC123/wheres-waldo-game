@@ -4,6 +4,11 @@ import GameBoard from "./GameBoard";
 import SubmitTimePopup from "./SubmitTimePopup";
 
 const Game = ({ index, imgSrc }) => {
+    useEffect(() => {
+        setStart(false);
+        document.querySelector(".gameboard-img").classList.add("inactive");
+        resetGame();
+    }, [index]);
     const [time, setTime] = useState("00:00:00");
     const [start, setStart] = useState(false);
     const [matches, setMatches] = useState(0);

@@ -23,7 +23,7 @@ function App() {
     const [gameboardIndex, setGameBoardIndex] = useState(1);
     const [showLeaderboard, setShowLeaderboard] = useState(false);
     function toggleLeaderboard() {
-        setShowLeaderboard(!showLeaderboard);
+        document.querySelector(".leaderboard-popup").classList.toggle("hide");
     }
 
     return (
