@@ -11,6 +11,7 @@ const Game = ({ index, imgSrc }) => {
     }, [index]);
     const [time, setTime] = useState("00:00:00");
     const [start, setStart] = useState(false);
+    const [selectionArray, setSelectionArray] = useState([]);
     const [matches, setMatches] = useState(0);
     function toggleGame(status) {
         setStart(status);
@@ -22,13 +23,17 @@ const Game = ({ index, imgSrc }) => {
             document.querySelector(".gameboard-img").classList.add("inactive");
         }
     }
-    function incrementMatches() {
-        setMatches(matches + 1);
+    function incrementMatches(selection) {
+        if (!selectionArray.includes(selection)) {
+            setMatches(matches + 1);
+            setSelectionArray([...selectionArray, selection]);
+        }
     }
     useEffect(() => {
         if (matches === 3) {
             setStart(false);
             setShowPopup(true);
+            setSelectionArray([]);
             document.querySelector(".gameboard-img").classList.add("inactive");
         }
     }, [matches]);
