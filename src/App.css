@@ -130,6 +130,10 @@ img {
     border-radius: 1em;
 }
 
+.hide {
+    display: none;
+}
+
 .submit-time-popup {
     text-align: center;
 }

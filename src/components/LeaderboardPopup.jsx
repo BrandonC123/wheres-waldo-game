@@ -18,11 +18,8 @@ const LeaderboardPopup = ({ index, toggleLeaderboard }) => {
         if (leaderboard.length < index) {
             getEntries();
         }
-        console.log(leaderboard);
-        console.log(leaderboard[index - 1]);
     }, [index]);
     async function getEntries() {
-        console.log("get");
         const querySnapshot = await getDocs(q);
         let tempArray = [];
         querySnapshot.forEach((doc) => {
@@ -38,7 +35,6 @@ const LeaderboardPopup = ({ index, toggleLeaderboard }) => {
         });
         let tempLeaderboard = Array.from(leaderboard);
         tempLeaderboard[index - 1] = tempArray;
-        console.log(tempLeaderboard);
         setLeaderboard(tempLeaderboard);
     }
     let calls = 0;
@@ -47,8 +43,6 @@ const LeaderboardPopup = ({ index, toggleLeaderboard }) => {
         snapshot.docChanges().forEach((change) => {
             if (change.type === "added") {
                 if (calls > 1) {
-                    console.log(calls);
-                    console.log(change.doc.data());
                     updateLeaderboard();
                 }
             }

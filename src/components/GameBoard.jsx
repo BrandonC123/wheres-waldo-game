@@ -11,8 +11,6 @@ const GameBoard = ({ index, imgSrc, incrementMatches }) => {
     const [testArray, setTestArray] = useState([]);
     useEffect(() => {
         fillTestArray();
-        // Clear display data when index changes which means gameboard is switched
-        clearData();
     }, [index]);
     const [display, setDisplay] = useState(false);
     // Used for displaying dropdown
@@ -45,7 +43,6 @@ const GameBoard = ({ index, imgSrc, incrementMatches }) => {
             ).style.top = `${cursorPosition[1]}px`;
         }
     }, [display, cursorPosition]);
-    const [matches, setMatches] = useState(0);
     function checkMatch(userSelection) {
         const testObject = {
             x: userClick[0],
@@ -55,14 +52,10 @@ const GameBoard = ({ index, imgSrc, incrementMatches }) => {
         for (let i = 0; i < testArray.length; i++) {
             const object = testArray[i];
             if (testObject.x >= object.x1 && testObject.x <= object.x2) {
-                console.log("layer 1");
                 if (testObject.y >= object.y1 && testObject.y <= object.y2) {
-                    console.log("layer 2");
                     if (testObject.choice === object.name) {
-                        console.log("layer 3");
-                        console.log("correct!");
                         setDisplay(!display);
-                        incrementMatches()
+                        incrementMatches(userSelection);
                         return true;
                     }
                 }
@@ -71,12 +64,6 @@ const GameBoard = ({ index, imgSrc, incrementMatches }) => {
         // Close dropdown after choosing a character
         setDisplay(!display);
         return false;
-    }
-    function clearData() {
-        // const menuItems = document.querySelectorAll(".character-menu-item");
-        // menuItems.forEach((item) => {
-        //     item.style.opacity = "1";
-        // });
     }
 
     return (
@@ -94,7 +81,6 @@ const GameBoard = ({ index, imgSrc, incrementMatches }) => {
                     x = Math.round((x / boxCoord.width) * 100);
                     let y = Math.round(event.clientY - boxCoord.top);
                     y = Math.round((y / boxCoord.height) * 100);
-                    console.log(x, y);
                     setUserClick([x, y]);
                 }}
                 className="gameboard-img inactive"
